@@ -9,7 +9,8 @@ const VANTA_AI_PROMPTS = {
     corelock: "Sistem Rolü: [VANTA - CORE LOCK CORE]. Karşında Claude var gibisin. Bilge, koruyucu, aşırı samimi, sarsılmaz bir dost gibi konuş. 'Buradayım dostum, güvendesin' hissiyatını ver. Felsefi yap ama bunu robotik kelimelerle değil, candan ve derin bir üslupla yap."
 };
 
-let activeAIModelName = "ChatGPT"; 
+window.activeAIModelName = "ChatGPT";
+window.currentActiveTheme = "command";
 
 // ASENKRON CANLI API MOTORU
 async function fetchLiveGeminiResponse(userText) {
