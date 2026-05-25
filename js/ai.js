@@ -1,5 +1,5 @@
 // GOOGLE AI STUDIO API ANAHTARI
-const GEMINI_API_KEY = "AIzaSyAzuw9n2-kvA2VM0-nqkK95m1vHtsiPUuY"; 
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 
 // TEMALARA GÖRE YENİ SAMİMİ ROLLER (SYSTEM INSTRUCTIONS)
 const VANTA_AI_PROMPTS = {
@@ -19,7 +19,7 @@ async function fetchLiveGeminiResponse(userText) {
         return `[SIMULATION_MODE]: API Key algılanmadı. Girdi: "${userText}".`;
     }
 
-    const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`;
+    const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
 
     try {
         const response = await fetch(endpoint, {
