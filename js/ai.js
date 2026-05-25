@@ -1,4 +1,3 @@
-// Global tanımlamalar (Dosyaların birbirini tanıması için)
 window.activeAIModelName = "Gemini";
 window.currentActiveTheme = "command";
 window.VANTA_AI_PROMPTS = {
@@ -7,13 +6,9 @@ window.VANTA_AI_PROMPTS = {
     corelock: "Sen [VANTA - CORE LOCK CORE] olarak, derin, felsefi ve koruyucu bir dost gibi konuş."
 };
 
-// API İsteği
 async function fetchLiveGeminiResponse(userText) {
     const theme = window.currentActiveTheme;
     const prompt = window.VANTA_AI_PROMPTS[theme];
-    
-    // NOT: Anahtarı buraya yazmak yerine Vercel'den çekmeye çalışacağız ama 
-    // çalışmazsa, geçici olarak anahtarını buraya tırnak içinde yapıştır.
     const API_KEY = "AIzaSyCSRjT-zUlZA18--cca_LXUjZdh9nzwotI"; 
 
     try {
