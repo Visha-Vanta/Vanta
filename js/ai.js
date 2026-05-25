@@ -14,7 +14,7 @@ async function fetchLiveGeminiResponse(userText) {
     
     // NOT: Anahtarı buraya yazmak yerine Vercel'den çekmeye çalışacağız ama 
     // çalışmazsa, geçici olarak anahtarını buraya tırnak içinde yapıştır.
-    const API_KEY = "AIzaSyAzuw9n2-kvA2VM0-nqkK95m1vHtsiPUuY"; 
+    const API_KEY = "AIzaSyCSRjT-zUlZA18--cca_LXUjZdh9nzwotI"; 
 
     try {
         const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`, {
