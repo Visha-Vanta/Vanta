@@ -183,6 +183,7 @@ body {
 
 @keyframes spinCW { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 @keyframes spinCCW { 0% { transform: rotate(0deg); } 100% { transform: rotate(-360deg); } }
+
 /* =========================================
    VANTA v0.4 - MOBİL EKRAN OPTİMİZASYONU 
    ========================================= */
@@ -209,14 +210,34 @@ body {
     }
 
     /* Mesaj yazma kutusu ve gönder butonu alanı */
-    .input-container { /* Eğer input alanını sardığın bir div varsa burayı onun class'ı yap */
+    .input-container { 
         width: 100% !important;
         padding: 10px;
         bottom: 0;
     }
 
     #user-input-field {
-        font-size: 16px !important; /* DİKKAT: 16px altı olursa iPhone'lar klavye açılınca otomatik zoom yapar ve ekranı bozar */
+        font-size: 16px !important; /* DİKKAT: 16px altı olursa otomatik zoom yapar */
         width: 100%; 
+    }
+
+    /* =========================================
+       TEMA KARTLARI YATAY KAYDIRMA DÜZELTMESİ 
+       ========================================= */
+    
+    /* DİKKAT: Aşağıdaki iki class ismini kendi HTML'indeki isimlerle değiştir! */
+    
+    .tema-kapsayici-kutusu { /* Temaları saran ana div'in class'ı (örn: .themes-wrapper) */
+        display: flex !important;
+        overflow-x: auto !important; /* Sadece bu kutunun içini kaydırır */
+        scroll-snap-type: x mandatory; /* Kaydırırken kartların ekrana tık tık oturmasını sağlar */
+        -webkit-overflow-scrolling: touch; /* Mobilde kaydırma hissinin yağ gibi akması için */
+        gap: 15px; /* Kartların arasındaki boşluk */
+        padding: 15px 10px;
+    }
+
+    .tema-karti { /* Tekil tema kartlarının class'ı (örn: .theme-card) */
+        flex: 0 0 85% !important; /* Kart mobilde ekranın %85'ini kaplasın */
+        scroll-snap-align: start; /* Kaydırma bitince kartı ekranın soluna hizalar */
     }
 }
