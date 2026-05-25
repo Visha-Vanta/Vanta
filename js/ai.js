@@ -17,7 +17,7 @@ async function fetchLiveGeminiResponse(userText) {
     const API_KEY = "AIzaSyAzuw9n2-kvA2VM0-nqkK95m1vHtsiPUuY"; // <-- GEÇİCİ ANAHTAR, GÜVENLİ DEĞİL, SADECE TEST AMAÇLI
 
     try {
-        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`, {
+        const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
