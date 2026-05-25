@@ -183,3 +183,40 @@ body {
 
 @keyframes spinCW { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 @keyframes spinCCW { 0% { transform: rotate(0deg); } 100% { transform: rotate(-360deg); } }
+/* =========================================
+   VANTA v0.4 - MOBİL EKRAN OPTİMİZASYONU 
+   ========================================= */
+@media screen and (max-width: 768px) {
+    /* Ekranın sağından solundan taşmayı engelle */
+    body, html {
+        overflow-x: hidden;
+        padding: 0;
+        margin: 0;
+    }
+
+    /* Chat alanını ekranın tamamına yay */
+    #chat-messages {
+        width: 100% !important;
+        height: 75vh; /* Telefonda klavye açıldığında alanı daraltabilmesi için */
+        padding: 10px;
+    }
+
+    /* Mesaj balonları telefonda çok dar veya geniş kalmasın */
+    .msg-bubble {
+        max-width: 90% !important; 
+        font-size: 14px; /* Mobilde daha okunaklı boyut */
+        padding: 10px 12px;
+    }
+
+    /* Mesaj yazma kutusu ve gönder butonu alanı */
+    .input-container { /* Eğer input alanını sardığın bir div varsa burayı onun class'ı yap */
+        width: 100% !important;
+        padding: 10px;
+        bottom: 0;
+    }
+
+    #user-input-field {
+        font-size: 16px !important; /* DİKKAT: 16px altı olursa iPhone'lar klavye açılınca otomatik zoom yapar ve ekranı bozar */
+        width: 100%; 
+    }
+}
