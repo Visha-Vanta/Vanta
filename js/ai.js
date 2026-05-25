@@ -9,33 +9,24 @@ window.VANTA_AI_PROMPTS = {
 async function fetchLiveGeminiResponse(userText) {
     const theme = window.currentActiveTheme || "command";
     const prompt = window.VANTA_AI_PROMPTS[theme];
-    
-    // Şimdilik buraya çalışan en güncel anahtarını yaz kanka. Vercel env işini sistem açılınca çözeceğiz.
-    const API_KEY = "AIzaSyCSRjT-zUlZA18--cca_LXUjZdh9nzwotI"; 
-
-    const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${API_KEY}`;
 
     try {
-        const response = await fetch(endpoint, {
+        // Doğrudan Google'a değil, kendi oluşturduğumuz gizli Vercel köprüsüne soruyoruz
+        const response = await fetch('/api/vanta', {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                contents: [{ parts: [{ text: userText }] }],
-                systemInstruction: { parts: [{ text: prompt }] },
-                generationConfig: { temperature: 0.7, maxOutputTokens: 1024 }
-            })
+            body: JSON.stringify({ userText, prompt })
         });
 
         const data = await response.json();
         
         if (!response.ok) {
-            console.error("API Detaylı Hata:", data);
-            return `[API_ERROR]: ${response.status} - ${data.error?.message || "Bilinmeyen Hata"}`;
+            return `[Sistem Hatası]: ${data.error || "Bir şeyler ters gitti"}`;
         }
 
         return data.candidates[0].content.parts[0].text;
     } catch (error) {
-        console.error("VANTA Bağlantı Hatası:", error);
-        return `[CRITICAL_CORE_FAULT]: Sunucu hatası: ${error.message}`;
+        console.error("VANTA Köprü Hatası:", error);
+        return `[CRITICAL_FAULT]: ${error.message}`;
     }
 }
