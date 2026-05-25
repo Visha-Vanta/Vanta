@@ -1,11 +1,11 @@
 // api/vanta.js
-export default async function handler(request, response) {
+module.exports = async function handler(request, response) {
     if (request.method !== 'POST') {
         return response.status(405).json({ error: 'Sadece POST istekleri kabul edilir.' });
     }
 
     const { userText, prompt } = request.body;
-    const API_KEY = process.env.GEMINI_API_KEY; // İşte şimdi güvendesiniz!
+    const API_KEY = process.env.GEMINI_API_KEY; 
 
     if (!API_KEY) {
         return response.status(500).json({ error: 'Sunucuda GEMINI_API_KEY tanımlı değil!' });
