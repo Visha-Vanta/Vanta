@@ -99,46 +99,18 @@ async function sendMessage() {
 
     const box = document.getElementById("chat-messages");
     
-    // 1. Kullanıcı Balonunu Ekrana Bas
-    const uRow = document.createElement("div");
-    uRow.className = "msg-row user";
-    uRow.innerHTML = `<div class="msg-bubble"><p>${text}</p></div>`;
-    box.appendChild(uRow);
-    
+    // Kullanıcı mesajı
+    box.innerHTML += `<div class="msg-row user"><div class="msg-bubble"><p>${text}</p></div></div>`;
     field.value = "";
-    box.scrollTop = box.scrollHeight;
 
-    // 2. "VANTA Düşünüyor..." Yükleme İndikatörünü Çalıştır
-    const thinkingRow = document.createElement("div");
-    thinkingRow.className = "msg-row system";
-    thinkingRow.id = "vanta-interim-thinking";
-    thinkingRow.innerHTML = `
-        <div class="msg-bubble">
-            <span class="prefix">VANTA [SYSTEM]:</span>
-            <p class="vanta-thinking-text">Veri ağlarına erişiliyor, yanıt derleniyor...</p>
-        </div>
-    `;
-    box.appendChild(thinkingRow);
-    box.scrollTop = box.scrollHeight;
+    // Düşünüyor balonu
+    box.innerHTML += `<div id="vanta-loader" class="msg-row system"><div class="msg-bubble"><p>Düşünüyorum...</p></div></div>`;
 
-    // 3. Gerçek Canlı API İsteğini Ateşle
-    const aiResponseText = await fetchLiveGeminiResponse(text);
+    // API'ye gönder
+    const response = await fetchLiveGeminiResponse(text);
 
-    // 4. Yükleme Balonunu Kaldır ve Gerçek Yanıtı Yapıştır
-    const loader = document.getElementById("vanta-interim-thinking");
-    if (loader) loader.remove();
-
-    const sRow = document.createElement("div");
-    sRow.className = "msg-row system";
-    
-    const modelLabel = typeof activeAIModelName !== "undefined" ? activeAIModelName : "VANTA";
-
-    sRow.innerHTML = `
-        <div class="msg-bubble">
-            <span class="prefix">VANTA [${modelLabel.toUpperCase()}]:</span>
-            <p>${aiResponseText.replace(/\n/g, '<br>')}</p>
-        </div>
-    `;
-    box.appendChild(sRow);
+    // Loader'ı sil ve cevabı bas
+    document.getElementById("vanta-loader").remove();
+    box.innerHTML += `<div class="msg-row system"><div class="msg-bubble"><p>${response.replace(/\n/g, '<br>')}</p></div></div>`;
     box.scrollTop = box.scrollHeight;
 }
