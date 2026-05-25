@@ -1,5 +1,6 @@
 // GOOGLE AI STUDIO API ANAHTARI
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+// Şimdilik buraya anahtarını yaz (Evet, pushlayınca yanar ama en azından kodun çalışıp çalışmadığını test edelim)
+const GEMINI_API_KEY = "AIzaSyAzuw9n2-kvA2VM0-nqkK95m1vHtsiPUuY"; 
 
 // TEMALARA GÖRE YENİ SAMİMİ ROLLER (SYSTEM INSTRUCTIONS)
 const VANTA_AI_PROMPTS = {
